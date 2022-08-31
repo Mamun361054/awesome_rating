@@ -17,3 +17,20 @@ A simple awesome rating widget for flutter which also include fully customizaabl
 ```
 #### AWESOME RATING
 ![DEMO](images/screenshot-1.png)
+
+```dart
+                AwesomeStarRating(
+                  starCount: 5,
+                  rating: 5.0,
+                  size: 30.0,
+                  onRatingChanged: (double value){
+                  setState((){
+                    rating = value;
+                      });
+                    },
+                  color: Colors.orange,
+                  borderColor: Colors.orange,
+                ),
+```
+#### AWESOME RATING value change
+![DEMO](images/screenshot-2.png)
