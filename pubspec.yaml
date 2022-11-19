@@ -1,6 +1,6 @@
 name: awesome_rating
 description: A simple awesome rating widget for flutter which also include fully customizaable, supporting any fraction of rating.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/Mamun361054/awesome_rating
 
 environment:

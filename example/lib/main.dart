@@ -31,10 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -48,8 +46,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
             _DemoItem2(),
-            SizedBox(height: 24.0,),
+            SizedBox(
+              height: 24.0,
+            ),
             _DemoItem1(),
+            SizedBox(
+              height: 24.0,
+            ),
+            _DemoItem3(),
           ],
         ),
       ),
@@ -58,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class _DemoItem1 extends StatelessWidget {
-
   const _DemoItem1({Key? key}) : super(key: key);
 
   @override
@@ -164,7 +167,6 @@ class _DemoItem2 extends StatefulWidget {
 }
 
 class _DemoItem2State extends State<_DemoItem2> {
-
   double rating = 4.0;
 
   @override
@@ -172,13 +174,14 @@ class _DemoItem2State extends State<_DemoItem2> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+
         AwesomeStarRating(
           starCount: 5,
           rating: rating,
           size: 30.0,
           color: Colors.orange,
-          onRatingChanged: (double value){
-            setState((){
+          onRatingChanged: (double value) {
+            setState(() {
               rating = value;
             });
           },
@@ -194,3 +197,126 @@ class _DemoItem2State extends State<_DemoItem2> {
   }
 }
 
+class _DemoItem3 extends StatelessWidget {
+  const _DemoItem3({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const SizedBox(height: 8.0),
+        Text(
+          'Custom rating widget',
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+        const SizedBox(height: 8.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const AwesomeStarRating(
+              starCount: 5,
+              rating: 1.0,
+              size: 30.0,
+              customRatingWidget: RatingWidget(
+                  full: Icon(Icons.star_outlined,size: 30.0,),
+                  half: Icon(Icons.star_half_outlined,size: 30.0,),
+                  empty: Icon(Icons.star_border_purple500_outlined,size: 30.0,),),
+              color: Colors.orange,
+              borderColor: Colors.orange,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              '1 reviews',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const AwesomeStarRating(
+              starCount: 5,
+              rating: 2.0,
+              size: 30.0,
+              customRatingWidget: RatingWidget(
+                full: Icon(Icons.star_outlined,size: 30.0,),
+                half: Icon(Icons.star_half_outlined,size: 30.0,),
+                empty: Icon(Icons.star_border_purple500_outlined,size: 30.0,),),
+              color: Colors.orange,
+              borderColor: Colors.orange,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              '2 reviews',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const AwesomeStarRating(
+              starCount: 5,
+              rating: 3.0,
+              size: 30.0,
+              customRatingWidget: RatingWidget(
+                full: Icon(Icons.star_outlined,size: 30.0,),
+                half: Icon(Icons.star_half_outlined,size: 30.0,),
+                empty: Icon(Icons.star_border_purple500_outlined,size: 30.0,),),
+              color: Colors.orange,
+              borderColor: Colors.orange,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              '3 reviews',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const AwesomeStarRating(
+              starCount: 5,
+              rating: 4.0,
+              size: 30.0,
+              customRatingWidget: RatingWidget(
+                full: Icon(Icons.star_outlined,size: 30.0,),
+                half: Icon(Icons.star_half_outlined,size: 30.0,),
+                empty: Icon(Icons.star_border_purple500_outlined,size: 30.0,),),
+              color: Colors.orange,
+              borderColor: Colors.orange,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              '4 reviews',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const AwesomeStarRating(
+              starCount: 5,
+              rating: 5.0,
+              size: 30.0,
+              customRatingWidget: RatingWidget(
+                full: Icon(Icons.star_outlined,size: 30.0,),
+                half: Icon(Icons.star_half_outlined,size: 30.0,),
+                empty: Icon(Icons.star_border_purple500_outlined,size: 30.0,),),
+              color: Colors.orange,
+              borderColor: Colors.orange,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              '5 reviews',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}

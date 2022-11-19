@@ -1,6 +1,8 @@
 library awesome_rating;
 
 import 'package:flutter/material.dart';
+import 'contents/content.dart';
+
 
 typedef RatingChangeCallback = void Function(double rating);
 
@@ -12,6 +14,7 @@ class AwesomeStarRating extends StatelessWidget {
   final Color? borderColor;
   final double size;
   final bool allowHalfRating;
+  final RatingWidget? customRatingWidget;
   final IconData? filledIconData;
   final IconData? halfFilledIconData;
   final IconData? defaultIconData;
@@ -27,31 +30,42 @@ class AwesomeStarRating extends StatelessWidget {
     this.color,
     this.borderColor,
     this.size = 25,
+    this.customRatingWidget,
     this.filledIconData,
     this.halfFilledIconData,
     this.allowHalfRating = true,
   }) : super(key: key);
 
   Widget buildStar(BuildContext context, int index) {
-    Icon icon;
-    if (index >= rating) {
-      icon = Icon(
-        defaultIconData ?? Icons.star_border,
-        color: borderColor ?? Theme.of(context).primaryColor,
-        size: size,
-      );
-    } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
-      icon = Icon(
-        halfFilledIconData ?? Icons.star_half,
-        color: color ?? Theme.of(context).primaryColor,
-        size: size,
-      );
-    } else {
-      icon = Icon(
-        filledIconData ?? Icons.star,
-        color: color ?? Theme.of(context).primaryColor,
-        size: size,
-      );
+    Widget icon;
+    if(customRatingWidget != null){
+      if (index >= rating) {
+        icon = Container(padding: const EdgeInsets.only(right: 4.0),child: customRatingWidget!.empty);
+      } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
+        icon = Container(padding: const EdgeInsets.only(right: 4.0),child: customRatingWidget!.half);
+      } else {
+        icon = Container(padding: const EdgeInsets.only(right: 4.0),child: customRatingWidget!.full);
+      }
+    }else{
+      if (index >= rating) {
+        icon = Icon(
+          defaultIconData ?? Icons.star_border,
+          color: borderColor ?? Theme.of(context).primaryColor,
+          size: size,
+        );
+      } else if (index > rating - (allowHalfRating ? 0.5 : 1.0) && index < rating) {
+        icon = Icon(
+          halfFilledIconData ?? Icons.star_half,
+          color: color ?? Theme.of(context).primaryColor,
+          size: size,
+        );
+      } else {
+        icon = Icon(
+          filledIconData ?? Icons.star,
+          color: color ?? Theme.of(context).primaryColor,
+          size: size,
+        );
+      }
     }
 
     return GestureDetector(
@@ -82,8 +96,9 @@ class AwesomeStarRating extends StatelessWidget {
       child: Wrap(
           alignment: WrapAlignment.start,
           spacing: spacing,
-          children:
-              List.generate(starCount, (index) => buildStar(context, index))),
+          children:List.generate(starCount, (index) => buildStar(context, index))),
     );
   }
 }
+
+
